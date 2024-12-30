@@ -1288,6 +1288,94 @@ button {
     transition: width 0.3s ease;
 }
 
+/* Project Section */
+.project-overview {
+    font-size: 1.1em;
+    line-height: 1.65;
+    margin: 2em 0;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8em;
+    margin: 2em 0;
+}
+
+.tech-badge {
+    padding: 0.5em 1em;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.tech-badge:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.metrics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5em;
+    margin: 2em 0;
+}
+
+.metric-item {
+    text-align: center;
+    padding: 1.5em;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.metric-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.metric-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.feature-section {
+    margin: 3em 0;
+}
+
+.feature-section h3 {
+    margin-bottom: 1em;
+    letter-spacing: 0.1rem;
+}
+
+.feature-section p {
+    margin-top: 1em;
+    opacity: 0.8;
+}
+
+/* Ensure images maintain aspect ratio */
+.image.main img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 736px) {
+    .metrics-container {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-stack {
+        gap: 0.5em;
+    }
+
+    .tech-badge {
+        padding: 0.4em 0.8em;
+    }
+}
+
 /* BG */
 
 #bg {
