@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#1b1f22" rx="4"/>
+  
+  <!-- Letters AG -->
+  <path d="M10 24l6-16h1l6 16" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <path d="M13 18h7" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Code brackets -->
+  <path d="M8 12L6 16l2 4" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+  <path d="M24 12l2 4l-2 4" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+</svg>
