@@ -1288,6 +1288,51 @@ button {
     transition: width 0.3s ease;
 }
 
+/* Blog Styles */
+.blog-post {
+    margin-bottom: 3rem;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.15);
+    padding-bottom: 2rem;
+}
+#blog-1 h2.major,
+#blog-2 h2.major {
+    width: 100% !important; /* Override the max-content width */
+    word-wrap: break-word; /* Allow long words to break */
+    white-space: normal; /* Allow text to wrap */
+    text-align: left; /* Left align for better readability */
+}
+
+.blog-post:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.post-meta {
+    margin: 1rem 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    opacity: 0.65;
+}
+
+.post-meta span {
+    margin-right: 1.5rem;
+}
+
+.post-meta .tag {
+    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.blog-post h3 {
+    margin-bottom: 0.5rem;
+}
+
+.blog-post p {
+    margin: 1rem 0;
+}
+
 /* Project Section */
 .project-overview {
     font-size: 1.1em;
