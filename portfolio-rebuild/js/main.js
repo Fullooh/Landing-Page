@@ -1,7 +1,7 @@
 class Portfolio {
     constructor() {
         this.initVanta();
-        this.createContent();
+        this.initializePortfolio();
         this.setupScrollNavigation();
     }
 
@@ -23,32 +23,26 @@ class Portfolio {
         });
     }
 
-    createContent() {
-        const mainContainer = document.querySelector('.main-container');
-        if (!mainContainer) {
-            const main = document.createElement('main');
-            main.className = 'main-container';
-            document.body.appendChild(main);
-        }
-        
-        // Create and append navigation
-        const navigation = this.createNavigation();
-        document.body.appendChild(navigation);
-        
-        // Create and append sections
+    initializePortfolio() {
+        const container = document.querySelector('.main-container');
         const heroSection = this.createHeroSection();
         const aboutSection = this.createAboutSection();
         const experienceSection = this.createExperienceSection();
-        
-        const container = document.querySelector('.main-container');
+        const projectsSection = this.createProjectsSection();
+        const contactSection = this.createContactSection();
+        const nav = this.createNavigation();
+
         container.appendChild(heroSection);
         container.appendChild(aboutSection);
         container.appendChild(experienceSection);
+        container.appendChild(projectsSection);
+        container.appendChild(contactSection);
+        container.appendChild(nav);
     }
 
     createHeroSection() {
         const section = document.createElement('section');
-        section.id = 'hero';
+        section.id = 'home';
         section.className = 'hero-section min-h-screen snap-start flex items-center justify-center relative';
         
         section.innerHTML = `
@@ -101,7 +95,7 @@ class Portfolio {
         
         nav.innerHTML = `
             <div class="flex flex-col space-y-4">
-                <a href="#hero" class="nav-dot active" data-section="hero">
+                <a href="#home" class="nav-dot active" data-section="home">
                     <span class="bg-white px-2 py-1 rounded-md text-black text-xs">Home</span>
                 </a>
                 <a href="#about" class="nav-dot" data-section="about">
@@ -286,7 +280,7 @@ class Portfolio {
             </div>
         `;
 
-        // Add animations after a brief delay to ensure DOM is ready
+        // Add animation after the section is created
         setTimeout(() => {
             if (window.gsap) {
                 gsap.registerPlugin(ScrollTrigger);
@@ -310,15 +304,12 @@ class Portfolio {
                         scrollTrigger: {
                             trigger: element,
                             start: "top center+=200",
-                            end: "bottom center",
-                            toggleActions: "play none none reverse",
-                            markers: false
+                            toggleActions: "play none none reverse"
                         },
                         opacity: 1,
                         x: 0,
                         duration: 1,
-                        delay: index * 0.3,
-                        ease: "power2.out"
+                        delay: index * 0.3
                     });
                 });
             }
@@ -327,10 +318,176 @@ class Portfolio {
         return section;
     }
 
+    createProjectsSection() {
+        const section = document.createElement('section');
+        section.id = 'projects';
+        section.innerHTML = `
+            <div class="w-full flex flex-col items-center justify-center">
+                <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
+                    <p class="text-secondary text-[17px] uppercase tracking-wider text-center">My work</p>
+                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Projects</h2>
+                    <p class="text-white text-[17px] leading-[30px] max-w-3xl mt-4 text-center">
+                        Following projects showcase my skills and experience through real-world examples of my work. 
+                        Each project is briefly described with links to code repositories and live demos. 
+                        It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
+                    </p>
+
+                    <div class="mt-20 flex flex-wrap gap-7 justify-center">
+                        ${projects.map((project, index) => `
+                            <div class="project-card opacity-0 xs:w-[360px] w-full" data-github="${project.github}">
+                                <div class="bg-[#1d1836] p-5 rounded-2xl h-full hover:bg-[#2a2449] transition-all duration-300">
+                                    <div class="relative w-full h-[230px]">
+                                        <img src="${project.image}" 
+                                             alt="${project.title}" 
+                                             class="w-full h-full object-cover rounded-2xl"
+                                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1d1836/ffffff?text=Project+Image'"
+                                        />
+                                        <div class="absolute top-3 right-3">
+                                            <div class="black-gradient w-10 h-10 rounded-full flex justify-center items-center">
+                                                <i class="fab fa-github text-white text-[24px]"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5">
+                                        <h3 class="text-white font-bold text-[24px]">${project.title}</h3>
+                                        <p class="mt-2 text-secondary text-[14px]">${project.description}</p>
+                                    </div>
+
+                                    <div class="mt-4 flex flex-wrap gap-2">
+                                        ${project.tags.map(tag => `
+                                            <p class="text-[14px] text-sky-300">#${tag}</p>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Add event listeners after creating the elements
+        setTimeout(() => {
+            const cards = section.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                // Add click handler
+                card.addEventListener('click', function() {
+                    const githubUrl = this.getAttribute('data-github');
+                    console.log('Clicked card, URL:', githubUrl); // Debug log
+                    if (githubUrl) {
+                        window.open(githubUrl, '_blank');
+                    }
+                });
+
+                // Add hover effects
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.transition = 'all 0.3s ease';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            VanillaTilt.init(cards, {
+                max: 25,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.5
+            });
+        }, 100);
+
+        return section;
+    }
+
+    createContactSection() {
+        const section = document.createElement('section');
+        section.id = 'contact';
+        section.innerHTML = `
+            <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
+                <p class="text-secondary text-[17px] uppercase tracking-wider text-center">Get in touch</p>
+                <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Contact</h2>
+                
+                <div class="w-full flex flex-col md:flex-row gap-10 mt-12">
+                    <!-- Contact Info -->
+                    <div class="flex-1 flex flex-col gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                                <i class="fas fa-envelope text-[#915eff] text-[24px]"></i>
+                            </div>
+                            <p class="text-white text-[16px]">angstgregory@gmail.com</p>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                                <i class="fab fa-linkedin text-[#915eff] text-[24px]"></i>
+                            </div>
+                            <a href="https://www.linkedin.com/in/angst-gregory" target="_blank" class="text-white text-[16px] hover:text-[#915eff] transition-colors">
+                                linkedin.com/in/angst-gregory
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                                <i class="fab fa-github text-[#915eff] text-[24px]"></i>
+                            </div>
+                            <a href="https://github.com/Fullooh" target="_blank" class="text-white text-[16px] hover:text-[#915eff] transition-colors">
+                                github.com/Fullooh
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="flex-1">
+                        <form class="flex flex-col gap-6">
+                            <div>
+                                <label class="text-white text-[16px] mb-2 block">Your Name</label>
+                                <input type="text" 
+                                       class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
+                                       placeholder="What's your name?"
+                                />
+                            </div>
+                            <div>
+                                <label class="text-white text-[16px] mb-2 block">Your Email</label>
+                                <input type="email" 
+                                       class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
+                                       placeholder="What's your email?"
+                                />
+                            </div>
+                            <div>
+                                <label class="text-white text-[16px] mb-2 block">Your Message</label>
+                                <textarea rows="7" 
+                                          class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none resize-none"
+                                          placeholder="What do you want to say?"
+                                ></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="bg-[#915eff] py-3 px-8 text-white font-bold shadow-md rounded-xl hover:bg-[#7c4dff] transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Add form submission handler
+        const form = section.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here if needed
+            console.log('Form submitted');
+        });
+
+        return section;
+    }
+
     setupScrollNavigation() {
         // Define sections array
         this.sections = [
-            { id: 'hero' },
+            { id: 'home' },
             { id: 'about' },
             { id: 'experience' },
             { id: 'projects' },
@@ -380,6 +537,65 @@ class Portfolio {
             }
         });
     }
+
+    createNavDots() {
+        const nav = document.createElement('nav');
+        nav.className = 'fixed right-5 top-1/2 transform -translate-y-1/2 z-50';
+        nav.innerHTML = `
+            <div class="flex flex-col gap-3">
+                <a href="#home" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="home"></a>
+                <a href="#about" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="about"></a>
+                <a href="#projects" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="projects"></a>
+                <a href="#contact" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="contact"></a>
+            </div>
+        `;
+
+        // Add intersection observer to track sections
+        const sections = ['home', 'about', 'projects', 'contact'];
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSection = entry.target.id;
+                    // Update nav dots
+                    document.querySelectorAll('.nav-dot').forEach(dot => {
+                        if (dot.getAttribute('data-section') === currentSection) {
+                            dot.classList.add('bg-[#915eff]');
+                            dot.classList.remove('bg-[#1d1836]');
+                        } else {
+                            dot.classList.remove('bg-[#915eff]');
+                            dot.classList.add('bg-[#1d1836]');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe each section
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) observer.observe(section);
+        });
+
+        // Add smooth scrolling to nav dots
+        nav.querySelectorAll('.nav-dot').forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = dot.getAttribute('data-section');
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        return nav;
+    }
 }
 
 // Initialize portfolio when DOM is loaded
@@ -390,3 +606,27 @@ window.addEventListener('load', () => {
         console.error('Vanta not loaded');
     }
 });
+
+const projects = [
+    {
+        title: "Resume Talk",
+        description: "AI-powered application that helps users create and improve their resumes through interactive conversations and real-time feedback.",
+        tags: ["React", "OpenAI", "Node.js", "React"],
+        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
+        github: "https://github.com/Fullooh/CodeDays"
+    },
+    {
+        title: "HackRU",
+        description: "Grocery Editor Application built during HackRU 2025",
+        tags: ["React", "Tailwind", "Java"],
+        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
+        github: "https://github.com/ebm/hackru"
+    },
+    {
+        title: "Prescience",
+        description: "An AI-powered CRM system that streamlines customer relationship management through intelligent automation and intuitive design.",
+        tags: ["Next.js", "React", "OpenAI API", "Tailwind"],
+        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
+        github: "https://github.com/aliiyuu/ebsco-ai"
+    }
+];

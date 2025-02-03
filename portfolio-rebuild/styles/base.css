@@ -47,9 +47,9 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(10, 10, 10, 0.95); /* Semi-transparent background */
     position: relative;
-    margin-top: 0; /* Reset margin */
+    margin-top: 0;
+    background: transparent; /* Explicitly set to transparent */
 }
 
 .navigation {

@@ -4,7 +4,7 @@
 
 @layer base {
     body { 
-        @apply m-0 bg-[#0a0a0a];
+        @apply m-0;
     }
 
     canvas { 
@@ -335,6 +335,63 @@
     .tooltip pre {
         animation: coffee 2s infinite;
     }
+
+    .project-card {
+        pointer-events: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .black-gradient {
+        background: linear-gradient(121.57deg, #1f1f1f 18.77%, rgba(0, 0, 0, 0.66) 60.15%);
+    }
+
+    /* Add smooth entrance animation for cards */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .project-card {
+        animation: fadeInUp 0.6s ease-out forwards;
+        animation-delay: calc(var(--index) * 0.2s);
+    }
+
+    .project-card:hover .black-gradient {
+        transform: translateZ(20px);
+    }
+
+    .project-card:hover img {
+        filter: brightness(1.1);
+    }
+
+    .project-card a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .project-card a:hover {
+        text-decoration: none;
+    }
+
+    .project-card a > div {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .project-card a:hover > div {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
 }
 
 #vanta-bg {
@@ -576,8 +633,10 @@ section {
 
 /* About section styles */
 .about-section {
-    @apply py-10;
-    background: rgba(0, 0, 0, 0.2);
+    @apply min-h-screen w-full flex items-center justify-center text-white;
+    background: none;
+    backdrop-filter: none;
+    scroll-snap-align: start;
 }
 
 /* Gradient backgrounds */
