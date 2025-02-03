@@ -119,73 +119,79 @@ class Portfolio {
     createAboutSection() {
         const section = document.createElement('section');
         section.id = 'about';
-        section.className = 'about-section relative z-10 min-h-screen px-4';
-        
         section.innerHTML = `
-            <div class="about-container max-w-7xl mx-auto">
-                <div class="about-header mb-10">
-                    <p class="text-[14px] text-gray-400 uppercase tracking-wider text-center">Introduction</p>
-                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">About Me</h2>
+            <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
+                <p class="text-secondary text-[17px] uppercase tracking-wider text-center">Introduction</p>
+                <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Who Am I?</h2>
+                
+                <div class="mt-4 max-w-3xl text-center">
+                    <p class="text-white text-[17px] leading-[30px]">
+                        I'm Angst Gregory, a dedicated and ambitious individual currently pursuing a Bachelor's degree in Computer Science. 
+                        With an Associate's degree in Business Management already under my belt, I bring a unique blend of business acumen 
+                        and technical expertise to the table. When I'm not buried in my studies or working on coding projects, I enjoy 
+                        watching baseball, playing video games, and spending quality time with friends. My favorite game to unwind with is 
+                        Valorant, but I'm always open to exploring new titles and experiences.
+                    </p>
+                    <p class="text-white text-[17px] leading-[30px] mt-4">
+                        My ultimate goal is to become a proficient software developer or engineer. I aspire to earn enough to self-sustain 
+                        and invest in myself, allowing me to grow my capital and delve into hobbies and interests that I've yet to explore. 
+                        I believe in continuous learning and self-improvement, and I'm eager to see where my journey in the tech world will 
+                        take me. Whether it's coding, strategizing in a game, or enjoying a baseball match, I strive to bring my best to 
+                        everything I do. Thank you for visiting my website, and I hope you find my projects and experiences as exciting as I do!
+                    </p>
                 </div>
-
-                <p class="about-description mt-4 text-gray-300 text-[17px] max-w-3xl leading-[30px]">
-                    I'm Angst Gregory, a dedicated and ambitious individual currently pursuing a Bachelor's degree in Computer Science. With an Associate's degree in Business Management already under my belt, I bring a unique blend of business acumen and technical expertise to the table. When I'm not buried in my studies or working on coding projects, I enjoy watching baseball, playing video games, and spending quality time with friends. My favorite game to unwind with is Valorant, but I'm always open to exploring new titles and experiences. My ultimate goal is to become a proficient software developer or engineer. I aspire to earn enough to self-sustain and invest in myself, allowing me to grow my capital and delve into hobbies and interests that I've yet to explore. I believe in continuous learning and self-improvement, and I'm eager to see where my journey in the tech world will take me. Whether it's coding, strategizing in a game, or enjoying a baseball match, I strive to bring my best to everything I do. Thank you for visiting my website, and I hope you find my projects and experiences as exciting as I do!
-                </p>
-
-                <div class="mt-20 flex flex-wrap gap-10 justify-center items-start">
-                    <div class="service-card xs:w-[250px] w-full">
-                        <div class="green-pink-gradient p-[1px] rounded-[20px] shadow-card">
+                
+                <div class="mt-20 flex flex-wrap gap-10">
+                    <div class="xs:w-[250px] w-full animate-card mt-8" style="--index: 0">
+                        <div class="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:scale-105 transition-transform duration-300">
                             <div class="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
-                                <img 
-                                    src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" 
+                                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG5rY2lkaXVxeXBqYjhxdWdiODJtbTllcGpzdHNyNjhxdWMyNWlzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YTzh3zw4mj1XpjjiIb/giphy.gif" 
                                     alt="Web Development" 
-                                    class="w-24 h-24 object-cover rounded-lg"
-                                >
+                                    class="w-28 h-28 object-contain" />
                                 <h3 class="text-white text-[20px] font-bold text-center">Web Development</h3>
+                                <p class="text-secondary text-[14px] text-center">Passionate about creating innovative solutions through code</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="service-card xs:w-[250px] w-full mt-16">
-                        <div class="green-pink-gradient p-[1px] rounded-[20px] shadow-card">
+                    <div class="xs:w-[250px] w-full animate-card" style="--index: 1">
+                        <div class="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:scale-105 transition-transform duration-300">
                             <div class="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
-                                <img 
-                                    src="https://media1.tenor.com/m/GVk4jB2u_i8AAAAd/devoloper.gif" 
-                                    alt="Software Developer" 
-                                    class="w-24 h-24 object-cover rounded-lg"
-                                >
-                                <h3 class="text-white text-[20px] font-bold text-center">Software Engineer</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-card xs:w-[250px] w-full">
-                        <div class="green-pink-gradient p-[1px] rounded-[20px] shadow-card">
-                            <div class="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
-                                <img 
-                                    src="https://media1.tenor.com/m/8pCPySZScZkAAAAC/matching-pfp-valorant.gif" 
-                                    alt="Valorant Gaming" 
-                                    class="w-24 h-24 object-cover rounded-lg"
-                                >
+                                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2R5d3ltMTE4NmtpYzZya29wNnJ2dmVpc3NpdW9raXBndHF1Ym5sbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2Y0D4uUa4I0nrKIaNq/giphy.gif" 
+                                    alt="Gaming" 
+                                    class="w-32 h-32 object-contain" />
                                 <h3 class="text-white text-[20px] font-bold text-center">Gamer</h3>
+                                <p class="text-secondary text-[14px] text-center">Enjoy gaming in my free time</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xs:w-[250px] w-full animate-card mt-8" style="--index: 2">
+                        <div class="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:scale-105 transition-transform duration-300">
+                            <div class="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
+                                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExamN6dHFocmZsMmExYjN2MnUxaHhtMDJocGozY24yZTlxd2Vsazk0bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3fQlLpXPmtLkmwU0/giphy.gif" 
+                                    alt="Baseball" 
+                                    class="w-32 h-32 object-contain" />
+                                <h3 class="text-white text-[20px] font-bold text-center">Baseball</h3>
+                                <p class="text-secondary text-[14px] text-center">Love watching America's favorite pastime</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xs:w-[250px] w-full animate-card" style="--index: 3">
+                        <div class="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:scale-105 transition-transform duration-300">
+                            <div class="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
+                                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczg4dWt6dm0wb3ZwYjg5ZzN3bXQ2bTJzbzQwcWlueDI5YjdoMTY4aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vcdbi5o470i9FACaZO/giphy.gif" 
+                                    alt="Software Developer" 
+                                    class="w-28 h-28 object-contain" />
+                                <h3 class="text-white text-[20px] font-bold text-center">Software Developer</h3>
+                                <p class="text-secondary text-[14px] text-center">Passionate about building innovative solutions</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-
-        // Initialize tilt effect
-        setTimeout(() => {
-            const cards = section.querySelectorAll('.service-card');
-            VanillaTilt.init(cards, {
-                max: 45,
-                scale: 1,
-                speed: 450,
-                glare: true,
-                "max-glare": 0.5
-            });
-        }, 100);
 
         return section;
     }
@@ -199,7 +205,7 @@ class Portfolio {
             <div class="max-w-7xl mx-auto">
                 <div class="mb-10 opacity-0">
                     <p class="text-[14px] text-gray-400 uppercase tracking-wider text-center">What I have done so far</p>
-                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience.</h2>
+                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience</h2>
                 </div>
 
                 <div class="mt-20 flex flex-col">
@@ -328,7 +334,7 @@ class Portfolio {
                     <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Projects</h2>
                     <p class="text-white text-[17px] leading-[30px] max-w-3xl mt-4 text-center">
                         Following projects showcase my skills and experience through real-world examples of my work. 
-                        Each project is briefly described with links to code repositories and live demos. 
+                        Each project is briefly described with links to code repositories. 
                         It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
                     </p>
 
@@ -412,59 +418,77 @@ class Portfolio {
                 
                 <div class="w-full flex flex-col md:flex-row gap-10 mt-12">
                     <!-- Contact Info -->
-                    <div class="flex-1 flex flex-col gap-4">
+                    <div class="flex-1 flex flex-col gap-4 contact-links">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                            <a href="mailto:angstgregory@gmail.com" 
+                               class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
                                 <i class="fas fa-envelope text-[#915eff] text-[24px]"></i>
-                            </div>
+                            </a>
                             <p class="text-white text-[16px]">angstgregory@gmail.com</p>
                         </div>
                         
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                            <a href="https://www.linkedin.com/in/angst-gregory-970837199/" 
+                               target="_blank"
+                               class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
                                 <i class="fab fa-linkedin text-[#915eff] text-[24px]"></i>
-                            </div>
-                            <a href="https://www.linkedin.com/in/angst-gregory" target="_blank" class="text-white text-[16px] hover:text-[#915eff] transition-colors">
-                                linkedin.com/in/angst-gregory
                             </a>
+                            <p class="text-white text-[16px]">linkedin.com/in/angst-gregory</p>
                         </div>
                         
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836]">
+                            <a href="https://github.com/Fullooh" 
+                               target="_blank"
+                               class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
                                 <i class="fab fa-github text-[#915eff] text-[24px]"></i>
-                            </div>
-                            <a href="https://github.com/Fullooh" target="_blank" class="text-white text-[16px] hover:text-[#915eff] transition-colors">
-                                github.com/Fullooh
                             </a>
+                            <p class="text-white text-[16px]">github.com/Fullooh</p>
                         </div>
                     </div>
 
                     <!-- Contact Form -->
                     <div class="flex-1">
-                        <form class="flex flex-col gap-6">
+                        <form 
+                            method="POST" 
+                            action="https://getform.io/f/6bc4473f-0745-44e7-a97b-07129537fcbd"
+                            class="flex flex-col gap-6 contact-form"
+                        >
                             <div>
                                 <label class="text-white text-[16px] mb-2 block">Your Name</label>
-                                <input type="text" 
-                                       class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
-                                       placeholder="What's your name?"
+                                <input 
+                                    type="text" 
+                                    name="name"
+                                    required
+                                    class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
+                                    placeholder="What's your name?"
+                                    style="pointer-events: auto;"
                                 />
                             </div>
                             <div>
                                 <label class="text-white text-[16px] mb-2 block">Your Email</label>
-                                <input type="email" 
-                                       class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
-                                       placeholder="What's your email?"
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    required
+                                    class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none"
+                                    placeholder="What's your email?"
+                                    style="pointer-events: auto;"
                                 />
                             </div>
                             <div>
                                 <label class="text-white text-[16px] mb-2 block">Your Message</label>
-                                <textarea rows="7" 
-                                          class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none resize-none"
-                                          placeholder="What do you want to say?"
+                                <textarea 
+                                    name="message"
+                                    rows="7" 
+                                    required
+                                    class="bg-[#1d1836] py-4 px-6 text-white rounded-lg w-full outline-none border-none resize-none"
+                                    placeholder="What do you want to say?"
+                                    style="pointer-events: auto;"
                                 ></textarea>
                             </div>
                             <button type="submit" 
-                                    class="bg-[#915eff] py-3 px-8 text-white font-bold shadow-md rounded-xl hover:bg-[#7c4dff] transition-colors">
+                                    class="bg-[#915eff] py-3 px-8 text-white font-bold shadow-md rounded-xl hover:bg-[#7c4dff] transition-colors"
+                                    style="pointer-events: auto;">
                                 Send Message
                             </button>
                         </form>
@@ -472,14 +496,6 @@ class Portfolio {
                 </div>
             </div>
         `;
-
-        // Add form submission handler
-        const form = section.querySelector('form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your form submission logic here if needed
-            console.log('Form submitted');
-        });
 
         return section;
     }

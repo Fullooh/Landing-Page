@@ -392,6 +392,44 @@
         transform: translateY(-8px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+
+    /* Add this to your CSS */
+    .contact-form {
+        pointer-events: auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        pointer-events: auto;
+    }
+
+    /* Add these rules with your other contact form styles */
+    .contact-links {
+        pointer-events: auto;
+    }
+
+    .contact-links a {
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    .animate-card {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+        animation-delay: calc(var(--index) * 0.2s);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 #vanta-bg {
