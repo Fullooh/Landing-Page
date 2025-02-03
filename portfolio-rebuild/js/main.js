@@ -203,15 +203,15 @@ class Portfolio {
         
         section.innerHTML = `
             <div class="max-w-7xl mx-auto">
-                <div class="mb-10">
+                <div class="mb-10 opacity-0">
                     <p class="text-[14px] text-gray-400 uppercase tracking-wider text-center">What I have done so far</p>
-                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience</h2>
+                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience.</h2>
                 </div>
 
                 <div class="mt-20 flex flex-col">
                     <div class="vertical-timeline">
                         <!-- CodeDay Labs x EBSCO -->
-                        <div class="vertical-timeline-element">
+                        <div class="vertical-timeline-element opacity-0">
                             <div class="vertical-timeline-element-content">
                                 <div class="bg-[#1d1836] p-8 rounded-2xl">
                                     <div class="flex flex-col">
@@ -221,7 +221,7 @@ class Portfolio {
                                     </div>
                                     <ul class="mt-5 list-disc ml-5 space-y-2">
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Developed comprehensive Customer Relationship Management (CRM) application to streamline client data management and enhance user engagement
+                                            Develops comprehensive Customer Relationship Management (CRM) application to streamline client data management and enhance user engagement
                                         </li>
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
                                             Enhance the UIUX by improving the frontend design, resulting in a more intuitive and responsive interface for users
@@ -235,7 +235,7 @@ class Portfolio {
                         </div>
 
                         <!-- Headstarter -->
-                        <div class="vertical-timeline-element">
+                        <div class="vertical-timeline-element opacity-0">
                             <div class="vertical-timeline-element-content">
                                 <div class="bg-[#1d1836] p-8 rounded-2xl">
                                     <div class="flex flex-col">
@@ -245,13 +245,13 @@ class Portfolio {
                                     </div>
                                     <ul class="mt-5 list-disc ml-5 space-y-2">
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Built and deployed 4 AI projects in 5 weeks using React JS, Next.js, Firebase, Clerk, and Vercel, following agile methodologies with weekly sprints and incorporated CICD practices
+                                            Built and deployed 4 AI projects in 5 weeks using React JS, Next.js, Firebase, Clerk, and Vercel
                                         </li>
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Led development on SyncUp, a social platform for software engineers and developers built with React, Firebase, and Next.js, focusing on swipe-based interactions and real-time chat functionality
+                                            Led development on SyncUp, a social platform for software engineers and developers
                                         </li>
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Participated in weekly mentorship sessions with engineers from Google, Y Combinator, Stanford, Amazon, and venture-backed startups
+                                            Participated in weekly mentorship sessions with engineers from Google, Y Combinator, Stanford, Amazon
                                         </li>
                                     </ul>
                                 </div>
@@ -259,7 +259,7 @@ class Portfolio {
                         </div>
 
                         <!-- CodeDay Labs 2023 -->
-                        <div class="vertical-timeline-element">
+                        <div class="vertical-timeline-element opacity-0">
                             <div class="vertical-timeline-element-content">
                                 <div class="bg-[#1d1836] p-8 rounded-2xl">
                                     <div class="flex flex-col">
@@ -269,13 +269,13 @@ class Portfolio {
                                     </div>
                                     <ul class="mt-5 list-disc ml-5 space-y-2">
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Collaborated in conceptualizing and developing 'Resume Talk', an AI-driven application that automates interview question generation via a drag-and-drop interface
+                                            Collaborated in conceptualizing and developing 'Resume Talk', an AI-driven application
                                         </li>
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Spearheaded the front-end development through designing the UI layout and integrating it with the backend to enhance user interaction and experience
+                                            Spearheaded the front-end development through designing the UI layout
                                         </li>
                                         <li class="text-white-100 text-[14px] pl-1 tracking-wider">
-                                            Implemented quality-of-life improvements, contributing to a more intuitive and responsive front-end design
+                                            Implemented quality-of-life improvements for intuitive front-end design
                                         </li>
                                     </ul>
                                 </div>
@@ -285,6 +285,44 @@ class Portfolio {
                 </div>
             </div>
         `;
+
+        // Add animations after a brief delay to ensure DOM is ready
+        setTimeout(() => {
+            if (window.gsap) {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate the header
+                gsap.to(section.querySelector('.mb-10'), {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top center+=100",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                });
+
+                // Animate each timeline element
+                const elements = section.querySelectorAll('.vertical-timeline-element');
+                elements.forEach((element, index) => {
+                    gsap.to(element, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top center+=200",
+                            end: "bottom center",
+                            toggleActions: "play none none reverse",
+                            markers: false
+                        },
+                        opacity: 1,
+                        x: 0,
+                        duration: 1,
+                        delay: index * 0.3,
+                        ease: "power2.out"
+                    });
+                });
+            }
+        }, 100);
 
         return section;
     }
