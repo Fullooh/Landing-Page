@@ -6,7 +6,11 @@ export default {
     "./styles/**/*.css",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '480px',
+      },
+    },
   },
   plugins: [],
 }
