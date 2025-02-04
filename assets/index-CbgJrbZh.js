@@ -1,51 +1,4 @@
-class Portfolio {
-    constructor() {
-        this.initVanta();
-        this.initializePortfolio();
-        this.setupScrollNavigation();
-    }
-
-    initVanta() {
-        window.VANTA.TRUNK({
-            el: "#background",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: window.innerHeight,
-            minWidth: window.innerWidth,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0xff004b,        // Trunk color (pink)
-            backgroundColor: 0x2274a, // Background color (blue)
-            spacing: 1.00,
-            chaos: 1.75,
-            speed: 1.50
-        });
-    }
-
-    initializePortfolio() {
-        const container = document.querySelector('.main-container');
-        const heroSection = this.createHeroSection();
-        const aboutSection = this.createAboutSection();
-        const experienceSection = this.createExperienceSection();
-        const projectsSection = this.createProjectsSection();
-        const contactSection = this.createContactSection();
-        const nav = this.createNavigation();
-
-        container.appendChild(heroSection);
-        container.appendChild(aboutSection);
-        container.appendChild(experienceSection);
-        container.appendChild(projectsSection);
-        container.appendChild(contactSection);
-        container.appendChild(nav);
-    }
-
-    createHeroSection() {
-        const section = document.createElement('section');
-        section.id = 'home';
-        section.className = 'hero-section min-h-screen snap-start flex items-center justify-center relative';
-        
-        section.innerHTML = `
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const a of t)if(a.type==="childList")for(const s of a.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function n(t){const a={};return t.integrity&&(a.integrity=t.integrity),t.referrerPolicy&&(a.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?a.credentials="include":t.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function i(t){if(t.ep)return;t.ep=!0;const a=n(t);fetch(t.href,a)}})();(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))n(i);new MutationObserver(i=>{for(const t of i)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function e(i){const t={};return i.integrity&&(t.integrity=i.integrity),i.referrerPolicy&&(t.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?t.credentials="include":i.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(i){if(i.ep)return;i.ep=!0;const t=e(i);fetch(i.href,t)}})();class c{constructor(){this.initVanta(),this.initializePortfolio(),this.setupScrollNavigation()}initVanta(){window.VANTA.TRUNK({el:"#background",mouseControls:!0,touchControls:!0,gyroControls:!1,minHeight:window.innerHeight,minWidth:window.innerWidth,scale:1,scaleMobile:1,color:16711755,backgroundColor:141130,spacing:1,chaos:1.75,speed:1.5})}initializePortfolio(){const e=document.querySelector(".main-container"),n=this.createHeroSection(),i=this.createAboutSection(),t=this.createExperienceSection(),a=this.createProjectsSection(),s=this.createContactSection(),l=this.createNavigation();e.appendChild(n),e.appendChild(i),e.appendChild(t),e.appendChild(a),e.appendChild(s),e.appendChild(l)}createHeroSection(){const e=document.createElement("section");return e.id="home",e.className="hero-section min-h-screen snap-start flex items-center justify-center relative",e.innerHTML=`
             <div class="hero-content">
                 <div class="overflow-hidden">
                     <h1 class="hero-title">Angst Gregory</h1>
@@ -62,38 +15,7 @@ class Portfolio {
                     <div class="scroll-dot"></div>
                 </a>
             </div>
-        `;
-
-        // Add animations after a brief delay to ensure DOM is ready
-        setTimeout(() => {
-            const title = section.querySelector('.hero-title');
-            const subtitle = section.querySelector('.hero-subtitle');
-            const description = section.querySelector('.hero-description');
-            
-            title.classList.add('animate-fade-in');
-            subtitle.classList.add('animate-fade-in-delay-1');
-            description.classList.add('animate-fade-in-delay-2');
-
-            // Initialize scroll dot animation with GSAP
-            if (window.gsap) {
-                gsap.to(section.querySelector('.scroll-dot'), {
-                    y: 24,
-                    duration: 1.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "power1.inOut"
-                });
-            }
-        }, 100);
-        
-        return section;
-    }
-
-    createNavigation() {
-        const nav = document.createElement('nav');
-        nav.className = 'navigation';
-        
-        nav.innerHTML = `
+        `,setTimeout(()=>{const n=e.querySelector(".hero-title"),i=e.querySelector(".hero-subtitle"),t=e.querySelector(".hero-description");n.classList.add("animate-fade-in"),i.classList.add("animate-fade-in-delay-1"),t.classList.add("animate-fade-in-delay-2"),window.gsap&&gsap.to(e.querySelector(".scroll-dot"),{y:24,duration:1.5,repeat:-1,yoyo:!0,ease:"power1.inOut"})},100),e}createNavigation(){const e=document.createElement("nav");return e.className="navigation",e.innerHTML=`
             <div class="flex flex-col space-y-4">
                 <a href="#home" class="nav-dot active" data-section="home">
                     <span class="bg-white px-2 py-1 rounded-md text-black text-xs">Home</span>
@@ -111,15 +33,7 @@ class Portfolio {
                     <span class="bg-white px-2 py-1 rounded-md text-black text-xs">Contact</span>
                 </a>
             </div>
-        `;
-
-        return nav;
-    }
-
-    createAboutSection() {
-        const section = document.createElement('section');
-        section.id = 'about';
-        section.innerHTML = `
+        `,e}createAboutSection(){const e=document.createElement("section");return e.id="about",e.innerHTML=`
             <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
                 <p class="text-secondary text-[17px] uppercase tracking-wider text-center">Introduction</p>
                 <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Who Am I?</h2>
@@ -191,58 +105,90 @@ class Portfolio {
                     </div>
                 </div>
             </div>
-        `;
+        `,e}createExperienceSection(){const e=document.createElement("section");return e.id="experience",e.className="experience-section relative z-10 min-h-screen px-4",e.innerHTML=`
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-10 opacity-0">
+                    <p class="text-[14px] text-gray-400 uppercase tracking-wider text-center">What I have done so far</p>
+                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience</h2>
+                </div>
 
-        return section;
-    }
-
-    createExperienceSection() {
-        const section = document.createElement('section');
-        section.id = 'experience';
-        section.innerHTML = `
-            <div class="w-full flex flex-col items-center justify-center py-10">
-                <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <p class="text-secondary text-[17px] uppercase tracking-wider text-center">What I have done so far</p>
-                    <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience.</h2>
-                    
-                    <!-- Timeline Container -->
-                    <div class="mt-10 flex flex-col space-y-6 relative">
-                        <!-- Timeline Line -->
-                        <div class="absolute left-0 md:left-1/2 h-full w-0.5 bg-gray-700 transform -translate-x-1/2"></div>
-                        
-                        ${experiences.map((experience, index) => `
-                            <!-- Experience Card -->
-                            <div class="flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center">
-                                <div class="flex-1 w-full md:w-1/2 p-4">
-                                    <div class="bg-tertiary p-5 rounded-2xl shadow-card hover:shadow-card-hover transition-all">
-                                        <h3 class="text-white text-[24px] font-bold">${experience.title}</h3>
-                                        <p class="text-secondary text-[16px] font-semibold" style="margin-top: 10px">${experience.company_name}</p>
-                                        <ul class="mt-5 list-disc ml-5 space-y-2">
-                                            ${experience.points.map((point) => `
-                                                <li class="text-white-100 text-[14px] pl-1 tracking-wider">${point}</li>
-                                            `).join('')}
-                                        </ul>
+                <div class="mt-20 flex flex-col">
+                    <div class="vertical-timeline">
+                        <!-- CodeDay Labs x EBSCO -->
+                        <div class="vertical-timeline-element opacity-0">
+                            <div class="vertical-timeline-element-content">
+                                <div class="bg-[#1d1836] p-8 rounded-2xl">
+                                    <div class="flex flex-col">
+                                        <h3 class="text-white text-[24px] font-bold">Open-Source Software Engineering Intern</h3>
+                                        <span class="vertical-timeline-element-date">Oct 2024 – Present</span>
+                                        <p class="text-secondary text-[16px] font-semibold mt-1">CodeDay Labs x EBSCO | Seattle, WA (Remote)</p>
                                     </div>
-                                </div>
-                                <!-- Date -->
-                                <div class="md:w-auto w-full text-center py-2 md:py-0">
-                                    <span class="bg-tertiary text-white px-4 py-2 rounded-full text-sm">
-                                        ${experience.date}
-                                    </span>
+                                    <ul class="mt-5 list-disc ml-5 space-y-2">
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Develops comprehensive Customer Relationship Management (CRM) application to streamline client data management and enhance user engagement
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Enhance the UIUX by improving the frontend design, resulting in a more intuitive and responsive interface for users
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Implement dynamic, scalable widgets on the dashboard, allowing for personalized user experiences and improved data visualization
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        `).join('')}
+                        </div>
+
+                        <!-- Headstarter -->
+                        <div class="vertical-timeline-element opacity-0">
+                            <div class="vertical-timeline-element-content">
+                                <div class="bg-[#1d1836] p-8 rounded-2xl">
+                                    <div class="flex flex-col">
+                                        <h3 class="text-white text-[24px] font-bold">Software Engineering Fellow</h3>
+                                        <span class="vertical-timeline-element-date">Aug 2024 – Sept 2024</span>
+                                        <p class="text-secondary text-[16px] font-semibold mt-1">Headstarter | New York, NY</p>
+                                    </div>
+                                    <ul class="mt-5 list-disc ml-5 space-y-2">
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Built and deployed 4 AI projects in 5 weeks using React JS, Next.js, Firebase, Clerk, and Vercel
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Led development on SyncUp, a social platform for software engineers and developers
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Participated in weekly mentorship sessions with engineers from Google, Y Combinator, Stanford, Amazon
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CodeDay Labs 2023 -->
+                        <div class="vertical-timeline-element opacity-0">
+                            <div class="vertical-timeline-element-content">
+                                <div class="bg-[#1d1836] p-8 rounded-2xl">
+                                    <div class="flex flex-col">
+                                        <h3 class="text-white text-[24px] font-bold">Open-Source Software Engineering Intern</h3>
+                                        <span class="vertical-timeline-element-date">Jul 2023 – Aug 2023</span>
+                                        <p class="text-secondary text-[16px] font-semibold mt-1">CodeDay Labs | Seattle, WA (Remote)</p>
+                                    </div>
+                                    <ul class="mt-5 list-disc ml-5 space-y-2">
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Collaborated in conceptualizing and developing 'Resume Talk', an AI-driven application
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Spearheaded the front-end development through designing the UI layout
+                                        </li>
+                                        <li class="text-white-100 text-[14px] pl-1 tracking-wider">
+                                            Implemented quality-of-life improvements for intuitive front-end design
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        `;
-        return section;
-    }
-
-    createProjectsSection() {
-        const section = document.createElement('section');
-        section.id = 'projects';
-        section.innerHTML = `
+        `,setTimeout(()=>{window.gsap&&(gsap.registerPlugin(ScrollTrigger),gsap.to(e.querySelector(".mb-10"),{scrollTrigger:{trigger:e,start:"top center+=100",toggleActions:"play none none reverse"},opacity:1,y:0,duration:.8}),e.querySelectorAll(".vertical-timeline-element").forEach((n,i)=>{gsap.to(n,{scrollTrigger:{trigger:n,start:"top center+=200",toggleActions:"play none none reverse"},opacity:1,x:0,duration:1,delay:i*.3})}))},100),e}createProjectsSection(){const e=document.createElement("section");return e.id="projects",e.innerHTML=`
             <div class="w-full flex flex-col items-center justify-center">
                 <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
                     <p class="text-secondary text-[17px] uppercase tracking-wider text-center">My work</p>
@@ -254,12 +200,12 @@ class Portfolio {
                     </p>
 
                     <div class="mt-20 flex flex-wrap gap-7 justify-center">
-                        ${projects.map((project, index) => `
-                            <div class="project-card opacity-0 xs:w-[360px] w-full" data-github="${project.github}">
+                        ${d.map((n,i)=>`
+                            <div class="project-card opacity-0 xs:w-[360px] w-full" data-github="${n.github}">
                                 <div class="bg-[#1d1836] p-5 rounded-2xl h-full hover:bg-[#2a2449] transition-all duration-300">
                                     <div class="relative w-full h-[230px]">
-                                        <img src="${project.image}" 
-                                             alt="${project.title}" 
+                                        <img src="${n.image}" 
+                                             alt="${n.title}" 
                                              class="w-full h-full object-cover rounded-2xl"
                                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/1d1836/ffffff?text=Project+Image'"
                                         />
@@ -271,62 +217,22 @@ class Portfolio {
                                     </div>
 
                                     <div class="mt-5">
-                                        <h3 class="text-white font-bold text-[24px]">${project.title}</h3>
-                                        <p class="mt-2 text-secondary text-[14px]">${project.description}</p>
+                                        <h3 class="text-white font-bold text-[24px]">${n.title}</h3>
+                                        <p class="mt-2 text-secondary text-[14px]">${n.description}</p>
                                     </div>
 
                                     <div class="mt-4 flex flex-wrap gap-2">
-                                        ${project.tags.map(tag => `
-                                            <p class="text-[14px] text-sky-300">#${tag}</p>
-                                        `).join('')}
+                                        ${n.tags.map(t=>`
+                                            <p class="text-[14px] text-sky-300">#${t}</p>
+                                        `).join("")}
                                     </div>
                                 </div>
                             </div>
-                        `).join('')}
+                        `).join("")}
                     </div>
                 </div>
             </div>
-        `;
-
-        // Add event listeners after creating the elements
-        setTimeout(() => {
-            const cards = section.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                // Add click handler
-                card.addEventListener('click', function() {
-                    const githubUrl = this.getAttribute('data-github');
-                    console.log('Clicked card, URL:', githubUrl); // Debug log
-                    if (githubUrl) {
-                        window.open(githubUrl, '_blank');
-                    }
-                });
-
-                // Add hover effects
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-10px)';
-                    card.style.transition = 'all 0.3s ease';
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
-                });
-            });
-
-            VanillaTilt.init(cards, {
-                max: 25,
-                speed: 400,
-                glare: true,
-                "max-glare": 0.5
-            });
-        }, 100);
-
-        return section;
-    }
-
-    createContactSection() {
-        const section = document.createElement('section');
-        section.id = 'contact';
-        section.innerHTML = `
+        `,setTimeout(()=>{const n=e.querySelectorAll(".project-card");n.forEach(i=>{i.addEventListener("click",function(){const t=this.getAttribute("data-github");console.log("Clicked card, URL:",t),t&&window.open(t,"_blank")}),i.addEventListener("mouseenter",()=>{i.style.transform="translateY(-10px)",i.style.transition="all 0.3s ease"}),i.addEventListener("mouseleave",()=>{i.style.transform="translateY(0)"})}),VanillaTilt.init(n,{max:25,speed:400,glare:!0,"max-glare":.5})},100),e}createContactSection(){const e=document.createElement("section");return e.id="contact",e.innerHTML=`
             <div class="w-full flex flex-col items-center justify-center max-w-7xl mx-auto px-4">
                 <p class="text-secondary text-[17px] uppercase tracking-wider text-center">Get in touch</p>
                 <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mt-2">Contact</h2>
@@ -410,154 +316,11 @@ class Portfolio {
                     </div>
                 </div>
             </div>
-        `;
-
-        return section;
-    }
-
-    setupScrollNavigation() {
-        // Define sections array
-        this.sections = [
-            { id: 'home' },
-            { id: 'about' },
-            { id: 'experience' },
-            { id: 'projects' },
-            { id: 'contact' }
-        ];
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.5,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    document.querySelectorAll('.nav-dot').forEach(dot => {
-                        dot.classList.remove('active');
-                    });
-                    const currentDot = document.querySelector(`[data-section="${sectionId}"]`);
-                    if (currentDot) {
-                        currentDot.classList.add('active');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Update click handlers for the dots
-        document.querySelectorAll('.nav-dot').forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                e.preventDefault();
-                const sectionId = dot.getAttribute('data-section');
-                const section = document.getElementById(sectionId);
-                console.log('Clicking dot for section:', sectionId); // Debug log
-                console.log('Found section:', section); // Debug log
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Observe all sections
-        this.sections.forEach(({ id }) => {
-            const section = document.getElementById(id);
-            if (section) {
-                observer.observe(section);
-            }
-        });
-    }
-
-    createNavDots() {
-        const nav = document.createElement('nav');
-        nav.className = 'fixed right-5 top-1/2 transform -translate-y-1/2 z-50';
-        nav.innerHTML = `
+        `,e}setupScrollNavigation(){this.sections=[{id:"home"},{id:"about"},{id:"experience"},{id:"projects"},{id:"contact"}];const e={root:null,threshold:.5,rootMargin:"0px"},n=new IntersectionObserver(i=>{i.forEach(t=>{if(t.isIntersecting){const a=t.target.id;document.querySelectorAll(".nav-dot").forEach(l=>{l.classList.remove("active")});const s=document.querySelector(`[data-section="${a}"]`);s&&s.classList.add("active")}})},e);document.querySelectorAll(".nav-dot").forEach(i=>{i.addEventListener("click",t=>{t.preventDefault();const a=i.getAttribute("data-section"),s=document.getElementById(a);console.log("Clicking dot for section:",a),console.log("Found section:",s),s&&s.scrollIntoView({behavior:"smooth"})})}),this.sections.forEach(({id:i})=>{const t=document.getElementById(i);t&&n.observe(t)})}createNavDots(){const e=document.createElement("nav");e.className="fixed right-5 top-1/2 transform -translate-y-1/2 z-50",e.innerHTML=`
             <div class="flex flex-col gap-3">
                 <a href="#home" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="home"></a>
                 <a href="#about" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="about"></a>
                 <a href="#projects" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="projects"></a>
                 <a href="#contact" class="nav-dot w-3 h-3 rounded-full border-2 border-[#915eff] bg-[#1d1836] transition-all duration-300" data-section="contact"></a>
             </div>
-        `;
-
-        // Add intersection observer to track sections
-        const sections = ['home', 'about', 'projects', 'contact'];
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentSection = entry.target.id;
-                    // Update nav dots
-                    document.querySelectorAll('.nav-dot').forEach(dot => {
-                        if (dot.getAttribute('data-section') === currentSection) {
-                            dot.classList.add('bg-[#915eff]');
-                            dot.classList.remove('bg-[#1d1836]');
-                        } else {
-                            dot.classList.remove('bg-[#915eff]');
-                            dot.classList.add('bg-[#1d1836]');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        // Observe each section
-        sections.forEach(sectionId => {
-            const section = document.getElementById(sectionId);
-            if (section) observer.observe(section);
-        });
-
-        // Add smooth scrolling to nav dots
-        nav.querySelectorAll('.nav-dot').forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = dot.getAttribute('data-section');
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        return nav;
-    }
-}
-
-// Initialize portfolio when DOM is loaded
-window.addEventListener('load', () => {
-    if (window.VANTA) {
-        new Portfolio();
-    } else {
-        console.error('Vanta not loaded');
-    }
-});
-
-const projects = [
-    {
-        title: "Resume Talk",
-        description: "AI-powered application that helps users create and improve their resumes through interactive conversations and real-time feedback.",
-        tags: ["React", "OpenAI", "Node.js", "React"],
-        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
-        github: "https://github.com/Fullooh/CodeDays"
-    },
-    {
-        title: "HackRU",
-        description: "Grocery Editor Application built during HackRU 2025",
-        tags: ["React", "Tailwind", "Java"],
-        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
-        github: "https://github.com/ebm/hackru"
-    },
-    {
-        title: "Prescience",
-        description: "An AI-powered CRM system that streamlines customer relationship management through intelligent automation and intuitive design.",
-        tags: ["Next.js", "React", "OpenAI API", "Tailwind"],
-        image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
-        github: "https://github.com/aliiyuu/ebsco-ai"
-    }
-];
+        `;const n=["home","about","projects","contact"],i={root:null,rootMargin:"0px",threshold:.5},t=new IntersectionObserver(a=>{a.forEach(s=>{if(s.isIntersecting){const l=s.target.id;document.querySelectorAll(".nav-dot").forEach(o=>{o.getAttribute("data-section")===l?(o.classList.add("bg-[#915eff]"),o.classList.remove("bg-[#1d1836]")):(o.classList.remove("bg-[#915eff]"),o.classList.add("bg-[#1d1836]"))})}})},i);return n.forEach(a=>{const s=document.getElementById(a);s&&t.observe(s)}),e.querySelectorAll(".nav-dot").forEach(a=>{a.addEventListener("click",s=>{s.preventDefault();const l=a.getAttribute("data-section"),o=document.getElementById(l);o&&o.scrollIntoView({behavior:"smooth"})})}),e}}window.addEventListener("load",()=>{window.VANTA?new c:console.error("Vanta not loaded")});const d=[{title:"Resume Talk",description:"AI-powered application that helps users create and improve their resumes through interactive conversations and real-time feedback.",tags:["React","OpenAI","Node.js","React"],image:"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",github:"https://github.com/Fullooh/CodeDays"},{title:"HackRU",description:"Grocery Editor Application built during HackRU 2025",tags:["React","Tailwind","Java"],image:"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",github:"https://github.com/ebm/hackru"},{title:"Prescience",description:"An AI-powered CRM system that streamlines customer relationship management through intelligent automation and intuitive design.",tags:["Next.js","React","OpenAI API","Tailwind"],image:"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",github:"https://github.com/aliiyuu/ebsco-ai"}];
