@@ -430,6 +430,46 @@
             transform: translateY(0);
         }
     }
+
+    .experience-card {
+        @apply opacity-0 transform translate-y-10;
+        animation: fadeInUp 0.5s forwards;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Experience section specific styles */
+    .experience-card {
+        animation-delay: calc(0.2s * var(--index, 0));
+        animation-duration: 0.6s;
+        animation-timing-function: ease-out;
+    }
+
+    @media (max-width: 768px) {
+        .experience-card {
+            animation-name: fadeInLeft;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    }
 }
 
 #vanta-bg {

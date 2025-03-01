@@ -6,6 +6,8 @@ class Portfolio {
     }
 
     initVanta() {
+        const isMobile = window.innerWidth < 768;
+        
         window.VANTA.TRUNK({
             el: "#background",
             mouseControls: true,
@@ -13,13 +15,27 @@ class Portfolio {
             gyroControls: false,
             minHeight: window.innerHeight,
             minWidth: window.innerWidth,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0xff004b,        // Trunk color (pink)
-            backgroundColor: 0x2274a, // Background color (blue)
-            spacing: 1.00,
-            chaos: 1.75,
-            speed: 1.50
+            scale: isMobile ? 0.7 : 1,
+            scaleMobile: 0.5,
+            color: 0xff004b,       // Red color in hex
+            backgroundColor: 0x022448, // Dark blue background
+            spacing: isMobile ? 2 : 1,
+            chaos: isMobile ? 1 : 1.75,
+            speed: isMobile ? 1 : 1.5,
+            quantity: isMobile ? 50 : 100, // Reduce the number of elements on mobile
+        });
+        
+        // Handle resize to ensure background scales correctly
+        window.addEventListener('resize', () => {
+            if (window.VANTA) {
+                if (window.innerWidth < 768 && !window._vantaEffect._mobile) {
+                    window.VANTA.destroy();
+                    this.initVanta();
+                } else if (window.innerWidth >= 768 && window._vantaEffect._mobile) {
+                    window.VANTA.destroy();
+                    this.initVanta();
+                }
+            }
         });
     }
 
@@ -205,28 +221,51 @@ class Portfolio {
                     <p class="text-secondary text-[17px] uppercase tracking-wider text-center">What I have done so far</p>
                     <h2 class="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience.</h2>
                     
-                    <!-- Timeline Container -->
-                    <div class="mt-10 flex flex-col space-y-6 relative">
-                        <!-- Timeline Line -->
-                        <div class="absolute left-0 md:left-1/2 h-full w-0.5 bg-gray-700 transform -translate-x-1/2"></div>
-                        
+                    <!-- Mobile Timeline -->
+                    <div class="md:hidden mt-10 flex flex-col space-y-8">
                         ${experiences.map((experience, index) => `
-                            <!-- Experience Card -->
-                            <div class="flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center">
-                                <div class="flex-1 w-full md:w-1/2 p-4">
-                                    <div class="bg-tertiary p-5 rounded-2xl shadow-card hover:shadow-card-hover transition-all">
-                                        <h3 class="text-white text-[24px] font-bold">${experience.title}</h3>
-                                        <p class="text-secondary text-[16px] font-semibold" style="margin-top: 10px">${experience.company_name}</p>
-                                        <ul class="mt-5 list-disc ml-5 space-y-2">
+                            <div class="experience-card w-full p-2 relative">
+                                <div class="absolute h-full w-0.5 bg-[#ff004b] left-0 top-0"></div>
+                                <div class="ml-4">
+                                    <span class="inline-block bg-[#1d1836] text-white px-3 py-1 rounded-full text-sm mb-3">
+                                        ${experience.date}
+                                    </span>
+                                    <div class="bg-[#1d1836] p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                                        <h3 class="text-white text-[20px] font-bold">${experience.title}</h3>
+                                        <p class="text-secondary text-[14px] font-semibold mt-1">${experience.company_name}</p>
+                                        <ul class="mt-3 list-disc ml-5 space-y-1">
                                             ${experience.points.map((point) => `
-                                                <li class="text-white-100 text-[14px] pl-1 tracking-wider">${point}</li>
+                                                <li class="text-white-100 text-[13px] pl-1 tracking-wider">${point}</li>
                                             `).join('')}
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- Date -->
-                                <div class="md:w-auto w-full text-center py-2 md:py-0">
-                                    <span class="bg-tertiary text-white px-4 py-2 rounded-full text-sm">
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <!-- Desktop Timeline -->
+                    <div class="hidden md:block mt-10 relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-1/2 h-full w-0.5 bg-[#ff004b] transform -translate-x-1/2"></div>
+                        
+                        <!-- Experience Cards -->
+                        ${experiences.map((experience, index) => `
+                            <div class="experience-card flex mb-16 items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}">
+                                <div class="w-1/2 pr-8 ${index % 2 === 0 ? 'text-right' : 'text-left'}">
+                                    <div class="bg-[#1d1836] p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                        <h3 class="text-white text-[24px] font-bold">${experience.title}</h3>
+                                        <p class="text-secondary text-[16px] font-semibold mt-2">${experience.company_name}</p>
+                                        <ul class="mt-5 list-disc ${index % 2 === 0 ? 'mr-5 text-right' : 'ml-5 text-left'} space-y-2">
+                                            ${experience.points.map((point) => `
+                                                <li class="text-white-100 text-[14px] ${index % 2 === 0 ? 'pr-1' : 'pl-1'} tracking-wider">${point}</li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="w-[25px] h-[25px] rounded-full bg-[#ff004b] z-10"></div>
+                                <div class="w-1/2 pl-8 flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}">
+                                    <span class="bg-[#1d1836] text-white px-4 py-2 rounded-full text-sm">
                                         ${experience.date}
                                     </span>
                                 </div>
@@ -337,7 +376,7 @@ class Portfolio {
                         <div class="flex items-center gap-4">
                             <a href="mailto:angstgregory@gmail.com" 
                                class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
-                                <i class="fas fa-envelope text-[#915eff] text-[24px]"></i>
+                                <i class="fas fa-envelope text-[#ff004b] text-[24px]"></i>
                             </a>
                             <p class="text-white text-[16px]">angstgregory@gmail.com</p>
                         </div>
@@ -346,7 +385,7 @@ class Portfolio {
                             <a href="https://www.linkedin.com/in/angst-gregory-970837199/" 
                                target="_blank"
                                class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
-                                <i class="fab fa-linkedin text-[#915eff] text-[24px]"></i>
+                                <i class="fab fa-linkedin text-[#ff004b] text-[24px]"></i>
                             </a>
                             <p class="text-white text-[16px]">linkedin.com/in/angst-gregory</p>
                         </div>
@@ -355,7 +394,7 @@ class Portfolio {
                             <a href="https://github.com/Fullooh" 
                                target="_blank"
                                class="w-12 h-12 rounded-full flex items-center justify-center bg-[#1d1836] hover:bg-[#2a2449] transition-colors cursor-pointer">
-                                <i class="fab fa-github text-[#915eff] text-[24px]"></i>
+                                <i class="fab fa-github text-[#ff004b] text-[24px]"></i>
                             </a>
                             <p class="text-white text-[16px]">github.com/Fullooh</p>
                         </div>
@@ -402,7 +441,7 @@ class Portfolio {
                                 ></textarea>
                             </div>
                             <button type="submit" 
-                                    class="bg-[#915eff] py-3 px-8 text-white font-bold shadow-md rounded-xl hover:bg-[#7c4dff] transition-colors"
+                                    class="bg-[#ff004b] py-3 px-8 text-white font-bold shadow-md rounded-xl hover:bg-[#d10040] transition-colors"
                                     style="pointer-events: auto;">
                                 Send Message
                             </button>
