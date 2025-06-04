@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
 
-  const sections = [
+  const sections = useMemo(() => [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' }
-  ];
+  ], []);
 
   useEffect(() => {
     const observerOptions = {
@@ -42,7 +42,7 @@ const Navigation: React.FC = () => {
         }
       });
     };
-  }, []);
+  }, [sections]);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);

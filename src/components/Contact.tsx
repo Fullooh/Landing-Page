@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
                   </a>
                   <div>
                     <span className="font-bold text-white text-sm sm:text-base">LinkedIn: </span>
-                    <a href="https://www.linkedin.com/in/angst-gregory-970837199/" target="_blank" className="text-indigo-300 hover:text-indigo-200 underline text-sm sm:text-base break-all">
+                    <a href="https://www.linkedin.com/in/angst-gregory-970837199/" target="_blank" rel="noreferrer" className="text-indigo-300 hover:text-indigo-200 underline text-sm sm:text-base break-all">
                       linkedin.com/in/angst-gregory
                     </a>
                   </div>
@@ -123,7 +123,7 @@ const Contact: React.FC = () => {
                   </a>
                   <div>
                     <span className="font-bold text-white text-sm sm:text-base">GitHub: </span>
-                    <a href="https://github.com/Fullooh" target="_blank" className="text-indigo-300 hover:text-indigo-200 underline text-sm sm:text-base break-all">
+                    <a href="https://github.com/Fullooh" target="_blank" rel="noreferrer" className="text-indigo-300 hover:text-indigo-200 underline text-sm sm:text-base break-all">
                       github.com/Fullooh
                     </a>
                   </div>
