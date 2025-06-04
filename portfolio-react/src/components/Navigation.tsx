@@ -52,7 +52,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className="navigation hidden md:block">
       <div className="flex flex-col space-y-4">
         {sections.map(({ id, label }) => (
           <button

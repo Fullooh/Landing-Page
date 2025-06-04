@@ -57,20 +57,22 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="hero-section min-h-screen snap-start flex items-center justify-center relative">
-      <div className="hero-content">
+      <div className="hero-content text-center text-white z-10 relative max-w-2xl mx-auto px-4">
         <div className="overflow-hidden">
-          <h1 className="hero-title">Angst Gregory</h1>
+          <h1 className="hero-title text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-3">Angst Gregory</h1>
         </div>
         <div className="overflow-hidden">
-          <h2 className="hero-subtitle">Aspiring Software Engineer</h2>
+          <h2 className="hero-subtitle text-lg xs:text-xl sm:text-2xl md:text-3xl mb-2">Aspiring Software Engineer</h2>
         </div>
         <div className="overflow-hidden">
-          <p className="hero-description">Turning creative ideas into interactive experiences</p>
+          <p className="hero-description text-sm xs:text-base sm:text-lg px-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            Turning creative ideas into interactive experiences
+          </p>
         </div>
       </div>
-      <div className="scroll-container">
-        <button onClick={scrollToAbout} className="scroll-indicator">
-          <div className="scroll-dot"></div>
+      <div className="scroll-container absolute w-full flex justify-center items-center bottom-8 xs:bottom-16 sm:bottom-32">
+        <button onClick={scrollToAbout} className="scroll-indicator w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2" style={{ transition: 'opacity 0.3s ease' }}>
+          <div className="scroll-dot w-3 h-3 rounded-full bg-white mb-1" style={{ transform: 'translateY(0)' }}></div>
         </button>
       </div>
     </section>

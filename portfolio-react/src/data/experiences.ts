@@ -21,7 +21,7 @@ export const experiences: Experience[] = [
   {
     title: "Open-Source Software Engineering Intern",
     company_name: "CodeDay Labs x EBSCO",
-    date: "Oct 2024 – Present",
+    date: "Oct 2024 – Dec 2024",
     location: "Seattle, WA (Remote)",
     points: [
       "Develops comprehensive Customer Relationship Management (CRM) application to streamline client data management and enhance user engagement",
