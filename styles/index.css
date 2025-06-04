@@ -470,6 +470,71 @@
             }
         }
     }
+
+    /* Simple scroll animations for vanilla JS */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .fade-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .fade-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Staggered animations */
+    .stagger-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease-out;
+        transition-delay: calc(var(--stagger) * 0.1s);
+    }
+
+    .stagger-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Enhanced card hover effects */
+    .animate-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        transition: all 0.3s ease;
+    }
+
+    .experience-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 0, 75, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
 }
 
 #vanta-bg {
@@ -735,24 +800,6 @@ section {
 .service-card:hover {
     transform: translateY(-10px);
 }
-
-/* Responsive text classes */
-@media (min-width: 640px) {
-    .xs\:text-[40px] {
-        font-size: 40px;
-    }
-    .xs\:w-[250px] {
-        width: 250px;
-    }
-}
-
-@media (min-width: 768px) {
-    .md\:text-[60px] {
-        font-size: 60px;
-    }
-}
-
-/* Keep your existing styles... */
 
 /* Vertical Timeline Styles */
 .vertical-timeline {

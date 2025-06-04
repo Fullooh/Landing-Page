@@ -3,6 +3,8 @@ class Portfolio {
         this.initVanta();
         this.initializePortfolio();
         this.setupScrollNavigation();
+        this.setupSimpleAnimations();
+        this.debugAnimations();
     }
 
     initVanta() {
@@ -54,6 +56,52 @@ class Portfolio {
         container.appendChild(projectsSection);
         container.appendChild(contactSection);
         container.appendChild(nav);
+
+        // Apply animations immediately after DOM is created
+        this.applyAnimationsToSection(aboutSection);
+        this.applyAnimationsToSection(experienceSection);
+        this.applyAnimationsToSection(projectsSection);
+        this.applyAnimationsToSection(contactSection);
+    }
+
+    applyAnimationsToSection(section) {
+        console.log('🎬 Applying animations to section:', section.id);
+        
+        // Super simple approach - just add visible class when scrolled into view
+        const handleScroll = () => {
+            const elements = section.querySelectorAll('h1, h2, h3, .animate-card, .experience-card, .project-card, p[class*="text-secondary"]');
+            
+            elements.forEach((el, index) => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.8;
+                
+                if (isVisible && !el.classList.contains('animated')) {
+                    // Add animation class with delay
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                        el.style.transition = 'all 0.6s ease-out';
+                        el.classList.add('animated');
+                    }, index * 100);
+                    
+                    console.log('✅ Animated element:', el.tagName, el.textContent?.slice(0, 30));
+                }
+            });
+        };
+
+        // Set initial state
+        setTimeout(() => {
+            section.querySelectorAll('h1, h2, h3, .animate-card, .experience-card, .project-card, p[class*="text-secondary"]').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+            });
+            
+            // Check on scroll
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check immediately
+            
+            console.log('🎯 Set up simple animations for', section.id);
+        }, 100);
     }
 
     createHeroSection() {
@@ -224,15 +272,21 @@ class Portfolio {
                     <!-- Mobile Timeline -->
                     <div class="md:hidden mt-10 flex flex-col space-y-8">
                         ${experiences.map((experience, index) => `
-                            <div class="experience-card w-full p-2 relative">
-                                <div class="absolute h-full w-0.5 bg-[#ff004b] left-0 top-0"></div>
+                            <div class="experience-card w-full relative pl-8">
+                                <!-- Timeline dot -->
+                                <div class="absolute left-2 top-6 w-3 h-3 bg-[#ff004b] rounded-full z-10"></div>
+                                <!-- Timeline line (only show between cards, not on last one) -->
+                                ${index < experiences.length - 1 ? 
+                                    '<div class="absolute left-2.5 top-9 w-0.5 h-16 bg-[#ff004b] z-1"></div>' : 
+                                    ''
+                                }
                                 <div class="ml-4">
                                     <span class="inline-block bg-[#1d1836] text-white px-3 py-1 rounded-full text-sm mb-3">
                                         ${experience.date}
                                     </span>
                                     <div class="bg-[#1d1836] p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                                         <h3 class="text-white text-[20px] font-bold">${experience.title}</h3>
-                                        <p class="text-secondary text-[14px] font-semibold mt-1">${experience.company_name}</p>
+                                        <p class="text-secondary text-[14px] font-semibold mt-1">${experience.company_name} | ${experience.location}</p>
                                         <ul class="mt-3 list-disc ml-5 space-y-1">
                                             ${experience.points.map((point) => `
                                                 <li class="text-white-100 text-[13px] pl-1 tracking-wider">${point}</li>
@@ -255,7 +309,7 @@ class Portfolio {
                                 <div class="w-1/2 pr-8 ${index % 2 === 0 ? 'text-right' : 'text-left'}">
                                     <div class="bg-[#1d1836] p-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                                         <h3 class="text-white text-[24px] font-bold">${experience.title}</h3>
-                                        <p class="text-secondary text-[16px] font-semibold mt-2">${experience.company_name}</p>
+                                        <p class="text-secondary text-[16px] font-semibold mt-2">${experience.company_name} | ${experience.location}</p>
                                         <ul class="mt-5 list-disc ${index % 2 === 0 ? 'mr-5 text-right' : 'ml-5 text-left'} space-y-2">
                                             ${experience.points.map((point) => `
                                                 <li class="text-white-100 text-[14px] ${index % 2 === 0 ? 'pr-1' : 'pl-1'} tracking-wider">${point}</li>
@@ -598,5 +652,52 @@ const projects = [
         tags: ["Next.js", "React", "OpenAI API", "Tailwind"],
         image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFub2QwcXhxaGdoZHpqeW5tdHdoMXo0a2d2ZDA1d211c3owbzlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif",
         github: "https://github.com/aliiyuu/ebsco-ai"
+    }
+];
+
+const experiences = [
+    {
+        title: "Co-Founder & Software Developer",
+        company_name: "SyntaxSocial",
+        date: "Mar 2025 – Present",
+        location: "New York, NY",
+        points: [
+            "Co-created a comprehensive social platform for tech professionals combining features of Reddit and Stack Overflow, facilitating networking and collaboration among developers.",
+            "Developed robust friend system, personalized feed, project matchmaking functionality, and community \"tribes\" to connect users with similar interests and skills.",
+            "Engineered backend infrastructure to support user authentication, data authentication, data persistence, and real-time interactions, ensuring scalability and performance, while implementing modern UI/UX principles to create and intuitive interface."
+        ]
+    },
+    {
+        title: "Open-Source Software Engineering Intern",
+        company_name: "CodeDay Labs x EBSCO",
+        date: "Oct 2024 – Present",
+        location: "Seattle, WA (Remote)",
+        points: [
+            "Develops comprehensive Customer Relationship Management (CRM) application to streamline client data management and enhance user engagement",
+            "Enhance the UIUX by improving the frontend design, resulting in a more intuitive and responsive interface for users",
+            "Implement dynamic, scalable widgets on the dashboard, allowing for personalized user experiences and improved data visualization"
+        ]
+    },
+    {
+        title: "Software Engineering Fellow",
+        company_name: "Headstarter",
+        date: "Aug 2024 – Sept 2024", 
+        location: "New York, NY",
+        points: [
+            "Built and deployed 4 AI projects in 5 weeks using React JS, Next.js, Firebase, Clerk, and Vercel",
+            "Led development on SyncUp, a social platform for software engineers and developers",
+            "Participated in weekly mentorship sessions with engineers from Google, Y Combinator, Stanford, Amazon"
+        ]
+    },
+    {
+        title: "Open-Source Software Engineering Intern",
+        company_name: "CodeDay Labs",
+        date: "Jul 2023 – Aug 2023",
+        location: "Seattle, WA (Remote)",
+        points: [
+            "Collaborated in conceptualizing and developing 'Resume Talk', an AI-driven application",
+            "Spearheaded the front-end development through designing the UI layout",
+            "Implemented quality-of-life improvements for intuitive front-end design"
+        ]
     }
 ];

@@ -22,7 +22,86 @@
     <script src="https://unpkg.com/react-vertical-timeline-component/dist/react-vertical-timeline-component.min.js"></script>
     <!-- Add this before your other stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script type="module" crossorigin src="/assets/index-CbgJrbZh.js"></script>
+    
+    <!-- Working Animation Script -->
+    <script>
+        window.addEventListener('load', () => {
+            console.log('🎬 Starting simple animations...');
+            
+            setTimeout(() => {
+                const aboutSection = document.getElementById('about');
+                if (!aboutSection) {
+                    console.log('❌ No about section found');
+                    return;
+                }
+                
+                // Get elements to animate
+                const h2 = aboutSection.querySelector('h2');
+                const paragraphs = aboutSection.querySelectorAll('p');
+                const cards = aboutSection.querySelectorAll('[class*="animate-card"]');
+                
+                console.log('🎯 Found elements:', {
+                    h2: !!h2,
+                    paragraphs: paragraphs.length,
+                    cards: cards.length
+                });
+                
+                // Very simple animation function
+                function fadeInElement(element, delay = 0) {
+                    if (!element) return;
+                    
+                    // Hide initially
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'all 0.8s ease';
+                    
+                    // Show with delay
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                        console.log('✅ Animated:', element.tagName);
+                    }, delay);
+                }
+                
+                // Animate title first
+                if (h2) fadeInElement(h2, 500);
+                
+                // Then paragraphs
+                paragraphs.forEach((p, i) => {
+                    fadeInElement(p, 800 + (i * 200));
+                });
+                
+                // Finally cards
+                cards.forEach((card, i) => {
+                    fadeInElement(card, 1500 + (i * 300));
+                });
+                
+                console.log('🚀 Animations triggered!');
+                
+            }, 2000);
+        });
+    </script>
+    
+    <!-- Debug Experience Section -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log('🔍 Debugging experience section...');
+                const experienceSection = document.getElementById('experience');
+                console.log('Experience section found:', !!experienceSection);
+                if (experienceSection) {
+                    console.log('Experience section HTML length:', experienceSection.innerHTML.length);
+                    const experienceCards = experienceSection.querySelectorAll('.experience-card');
+                    console.log('Experience cards found:', experienceCards.length);
+                } else {
+                    console.log('❌ Experience section missing!');
+                    console.log('All sections:', Array.from(document.querySelectorAll('section')).map(s => s.id));
+                }
+            }, 3000);
+        });
+    </script>
+    
+  <script type="module" crossorigin src="/assets/index-DG6BPPp7.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/style-BPzgUWmp.css">
 </head>
 <body>
