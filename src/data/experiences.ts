@@ -8,7 +8,7 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    title: "Co-Founder & Software Developer",
+    title: "Founder & Software Developer",
     company_name: "SyntaxSocial",
     date: "Mar 2025 – Present",
     location: "New York, NY",
